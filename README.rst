@@ -2,25 +2,26 @@
 piepy - Preprocessing Intracranial EEG
 ======================================
 
-|ProjectStatus|_ |Version|_ |BuildStatus|_ |Coverage|_ |License|_ |PythonVersions|_
+..
+  |ProjectStatus|_ |Version|_ |BuildStatus|_ |Coverage|_ |License|_ |PythonVersions|_
 
-.. |ProjectStatus| image:: https://www.repostatus.org/badges/latest/active.svg
-.. _ProjectStatus: https://www.repostatus.org/#active
+  .. |ProjectStatus| image:: https://www.repostatus.org/badges/latest/active.svg
+  .. _ProjectStatus: https://www.repostatus.org/#active
 
-.. |Version| image:: https://img.shields.io/pypi/v/piepy.svg
-.. _Version: https://pypi.python.org/pypi/piepy/
+  .. |Version| image:: https://img.shields.io/pypi/v/piepy.svg
+  .. _Version: https://pypi.python.org/pypi/piepy/
 
-.. |BuildStatus| image:: https://github.com/piepy-tools/piepy/actions/workflows/build.yml/badge.svg
-.. _BuildStatus: https://github.com/piepy-tools/piepy/actions/workflows/build.yml
+  .. |BuildStatus| image:: https://github.com/piepy-tools/piepy/actions/workflows/build.yml/badge.svg
+  .. _BuildStatus: https://github.com/piepy-tools/piepy/actions/workflows/build.yml
 
-.. |Coverage| image:: https://codecov.io/gh/piepy-tools/piepy/branch/main/graph/badge.svg
-.. _Coverage: https://codecov.io/gh/piepy-tools/piepy
+  .. |Coverage| image:: https://codecov.io/gh/piepy-tools/piepy/branch/main/graph/badge.svg
+  .. _Coverage: https://codecov.io/gh/piepy-tools/piepy
 
-.. |License| image:: https://img.shields.io/pypi/l/piepy.svg
-.. _License: https://opensource.org/licenses/Apache-2.0
+  .. |License| image:: https://img.shields.io/pypi/l/piepy.svg
+  .. _License: https://opensource.org/licenses/Apache-2.0
 
-.. |PythonVersions| image:: https://img.shields.io/pypi/pyversions/piepy.svg
-.. _PythonVersions: https://pypi.python.org/pypi/piepy/
+  .. |PythonVersions| image:: https://img.shields.io/pypi/pyversions/piepy.svg
+  .. _PythonVersions: https://pypi.python.org/pypi/piepy/
 
 
 piepy is a module for preprocessing iEEG data.
