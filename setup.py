@@ -1,4 +1,4 @@
-"""FOOOF setup script."""
+"""piepy setup script."""
 
 import os
 from setuptools import setup, find_packages
