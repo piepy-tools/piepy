@@ -40,45 +40,76 @@ class iEEG:
     
     
     """
-
-    def __init__(self, center_extrema='trough', find_extrema_kwargs=None):
+    data = np.array()
+    info = None # to be populate with MNE info
+    # potentially add electrode cluster type (depth, grid, microwire, high-density, etc.)
+    ch_schema = {} # dictionary containing shank IDs & associated channel names
+    history = {}
+    
+    
+    def __init__(self, fname, subject, session=None, data_type=None, behavior=None):
         """Initialize object."""
 
-        # Settings
-        self.center_extrema = center_extrema
-
-        if find_extrema_kwargs is None:
-            self.find_extrema_kwargs = {'filter_kwargs': {'n_cycles': 3}}
-        else:
-            self.find_extrema_kwargs = find_extrema_kwargs
-
-        # Fit params
-        self.sig = None
+        self.fname = fname
+        self.subject = subject
+        self.session = session
+        self.data_type = data_type #resting, task
+        self.behavior = behavior #csv of patient behavior (row = trial), plot trials that had poor performance (bonus)
         self.fs = None
-        self.f_range = None
-        self.std = None
+        
 
-        # Results
-        self.df_features = None
-        self.spikes = []
-        self.params = None
-        self.spikes_gen = None
-
-
-    def __len__(self):
-        """Define the length of the object."""
-
-        return len(self.spikes)
-
-
-    def __iter__(self):
-        """Allow for iterating across the object."""
-
-        for spike in self.spikes:
-            yield spike[~np.isnan(spike)]
-
-
-    def __getitem__(self, index):
-        """Allow for indexing into the object."""
-
-        return self._spikes[index]
+    def load_data(self, self.fname):
+        
+    def sort_channels(self, self.ch_schema):
+        
+        # prompt user to sort their data (include in documentation)
+        # per depth probe or grid, list all channels associated with that "cluster"? - point to tutorial/docs for details
+        # depth/grid IDs and associated channels
+        
+    
+        
+    def preprocess(self, reference='average', filter_line_noise='spatial', epoch=True):
+        
+    def rereference(self, method='local_average'):
+        
+        if method == 'local_average': 
+        
+        if method == 'spatial':
+            
+        if method == 'bipolar':
+            
+        if method == 'global':
+    
+    def filter_data(self, filter_type='bandpass', frequency_range, filter_method='fir'): # add kwargs?
+        
+        if filter_type = 'bandpass':
+        
+        if filter_type = 'bandstop':
+            
+        if filter_type = 'highpass':
+            
+        if filter_type = 'lowpass':
+        
+        if filter_type = 'spatial':
+            
+    
+    def epoch_data(self):
+        
+    def save_preprocessed_data(self, path):
+    
+        
+################ organize later ####################    
+    def apply_average_reference(): # check this - will the schema be contained in self?
+        
+    def apply_spatial_reference(montage):
+        
+    def apply_bipolar_reference():
+        
+    def apply_global_reference():
+        
+    def __add_to_history__():    
+        
+        
+        
+        
+        
