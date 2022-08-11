@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import mne
 import mne_bids
 
+from functions import *
+
 ###################################################################################################
 ###################################################################################################
 
@@ -73,11 +75,11 @@ class iEEG:
     def rereference(self, method='local_average'):
         
         if method == 'local_average': 
-        
+            reref_raw = local_avg_reference(raw, shank_list, trig_list)
         if method == 'spatial':
-            
+            reref_raw = spatial_reference(raw, shank_list, trig_list)
         if method == 'bipolar':
-            
+            reref_raw = bipolar_reference(raw, shank_list, trig_list)
         if method == 'global':
     
     def filter_data(self, filter_type='bandpass', frequency_range, filter_method='fir'): # add kwargs?
