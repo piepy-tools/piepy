@@ -47,7 +47,7 @@ This documentation includes:
   which lists and describes all the code and functionality available in the module
 - `Glossary <https://piepy-tools.github.io/piepy/glossary.html>`_:
   which defines key terms used in the module
-- _`Glossary of electrode types':
+- `Electrode reference guide <https://github.com/piepy-tools/piepy/blob/d52a957fcc96681b4042c37f06144e820a8bc368/tutorials/shank_info/piepy-tools%20project_electrode%20types_v2.pdf>`_:
   which details the kinds of intracranial electrodes used in iEEG recordings
 
 Dependencies
