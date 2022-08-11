@@ -61,7 +61,95 @@ class iEEG:
     def load_data(self, self.fname):
         
     def sort_channels(self, self.ch_schema):
+        """ Prompts user to manually sort their data channels by depth/grid/microwire 
+        Parameters
+        ----------
+        Returns
+        -------
+        """
         
+        elec_group_type = ''
+        
+        grid_chans = ''
+        strip_chans = ''
+        depth_chans = ''
+        microwire_chans = ''
+        
+        cluster_list = []
+        aux_chans = ''
+        aux_list = []
+        proceed = 'n'
+        proceed_aux = 'n'
+
+        print('In this step, sort all the channels in your data into their\
+        respective electrode groups. Electrodes can be grouped by grid, strip,\
+        depth probe, or microwire array. For more details about electrode group\
+        types, refer to the "Glossary of Electrode Types" on the piepy repository\
+        on Github.\
+        \n\n First ')
+        
+        print('printing all channels...')
+
+        ch_names = raw.info['ch_names']
+        print(ch_names)
+        print('\n\n')
+
+
+        print('enter all iEEG channels on each cluster (depth probe/grid/microwire)\
+               as a list of strings (without brackets), excluding non-iEEG channels.\
+               When done, type done. \n')
+
+        while proceed=='n':
+            while cluster_chans != 'done':
+                cluster_ids = input('cluster id/name: '
+                cluster_chans = input('channels in cluster: ');
+                if cluster_chans != 'done':
+                    cluster_chans = list(eval(cluster_chans))
+                    cluster_list.append(cluster_chans)
+                else:
+                    break
+            
+            print('\n Here are your channels grouped by cluster.\
+                   Visually inspect them to make sure they were input correctly. \n')
+            
+            print(cluster_list)
+            proceed = input('Continue? (y/n)')
+            assert proceed == 'y' or proceed == 'n'
+
+        print('\n enter each auxillary channel (non-iEEG, stimulus, trigger, ECG,\
+               etc.)\ one at a time as a string. When done, type done')
+
+        while proceed_aux == 'n':
+            while aux_chans != 'done':
+                aux_chans = input('trigger/auxillary channel:');
+                if aux_chans != 'done':
+
+                    try:
+                        eval(aux_chans)
+                    except:
+                        print('unable to interpret.\
+                               please make sure channel name is a string')
+                        break
+
+                    aux_chans = eval(aux_chans)
+
+                    assert isinstance(aux_chans,str), 'please enter each channel name separately'
+                    assert aux_chans in raw.info['ch_names'], 'channel not found in raw object'
+
+                    aux_list.append(aux_chans)
+
+                else:
+                    break
+
+    
+        print('\n Here are your non-iEEG channels. Any channels not included\
+               in these two lists will not be included in further preprocessing\
+               steps.\n')
+        print(aux_list)
+        proceed_aux = input('Continue? (y/n)')
+        assert proceed_aux == 'y' or proceed_aux == 'n'
+
+    return shank_list, trig_list
         # prompt user to sort their data (include in documentation)
         # per depth probe or grid, list all channels associated with that "cluster"? - point to tutorial/docs for details
         # depth/grid IDs and associated channels
