@@ -1,6 +1,6 @@
+#### RE-REFERENCING FUNCTIONS ####
+
 ##### NOTE: Will need to account for micro/macro depth electrodes (micro electrodes within each probe should be its own electrode group)
-
-
 def local_avg_reference(raw, elec_group_list, trig_list):
     """Rereference to local average of each depth or grid electrode
    
@@ -60,9 +60,27 @@ def bipolar_reference(raw, elec_group_list, trig_list):
     return raw_bip_ref
 
 
-def spatial_reference(raw, signal_range, noise_range):
-    """"""
-    raw_ssd = raw_annotate.copy().pick_types(seeg=True)
+
+#### FILTER FUNCTIONS ####
+
+def spatial_filter(raw, signal_range=(59,61), noise_range=(57,63)):
+    """
+    Subtract non-neural line noise using spatial spectral decomposition (identifies principal components of the data that capture particular types of activity). By subtracting this activity from the data, we remove non-neural activity, while preserving data in the gamma range.
+    
+    Parameters
+    ----------
+    raw: Instance of MNE Raw Object
+    signal_range: Tuple of frequency ranges to detect line noise.
+    noise_range: Tuple of frequency ranges directly outside line noise range.
+    
+    Returns
+    -------
+    raw_filt: MNE Raw Object
+        Contains both non-iEEG channels and spatially filtered electrode groups.
+        """
+    montage = raw.get_montage()
+    
+    raw_ssd = raw.copy().pick_types(seeg=True)
     ssd = mne.decoding.SSD(raw_ssd.info, 
                  filt_params_signal=dict(l_freq=signal[0], h_freq=signal[1], l_trans_bandwidth=1, h_trans_bandwidth=1),
                  filt_params_noise=dict(l_freq=noise[0], h_freq=noise[1], l_trans_bandwidth=1, h_trans_bandwidth=1),
