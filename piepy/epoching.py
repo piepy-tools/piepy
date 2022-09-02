@@ -19,9 +19,23 @@ import matplotlib.pyplot as plt
 
 def epoch(data, events_array):
 
+    ## what we're adding on top of the MNE epoching is? 
+    ##     -- The checking of csv data compatibility before data entry
+    ##     -- For resting-state data, create the epochs events array for you
+    ##     -- 
+
     """ Epoch continuous data into events (trials if task data, n-second epochs if resting data)
     
         data: MNE raw object, either preprocessed already or not
 
+
+    Attributes
+    ----------    
     
+    continuous : MNE object of continuous, un-epoched data 
+
+
+
+
+
     """
