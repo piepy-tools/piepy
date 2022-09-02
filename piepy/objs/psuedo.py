@@ -62,6 +62,7 @@ class iEEG:
         
     def sort_channels(self, self.ch_schema):
         """ Prompts user to manually sort their data channels by depth/grid/microwire 
+        Uses a GUI powered by tkinter http://tkdocs.com/tutorial/firstexample.html
         Parameters
         ----------
         Returns
@@ -95,7 +96,7 @@ class iEEG:
         print('\n\n')
 
 
-        print('enter all iEEG channels on each cluster (depth probe/grid/microwire)\
+        print('For each electrode group, enter all iEEG channels on each cluster (depth probe/grid/microwire)\
                as a list of strings (without brackets), excluding non-iEEG channels.\
                When done, type done. \n')
 
