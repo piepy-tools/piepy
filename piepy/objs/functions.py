@@ -1,6 +1,10 @@
 #### RE-REFERENCING FUNCTIONS ####
 
 ##### NOTE: Will need to account for micro/macro depth electrodes (micro electrodes within each probe should be its own electrode group)
+
+import mne
+from scipy.signal import firwin
+
 def local_avg_reference(raw, elec_group_list, trig_list):
     """Rereference to local average of each depth or grid electrode
    
@@ -23,7 +27,6 @@ def local_avg_reference(raw, elec_group_list, trig_list):
     
     # loop through list of shanks
     for group in elec_group_list:
-        print(group[0])
         elec_group_obj = raw.copy().pick_channels(group, ordered=True) # get selection of raw with shank channels
         elec_group_obj.set_eeg_reference('average') # rereference to average
         reref_elecs.append(elec_group_obj) # append to list of rereferenced shank objects
@@ -61,7 +64,31 @@ def bipolar_reference(raw, elec_group_list, trig_list):
 
 
 
+def global_avg_reference(raw, elec_group_list, trig_list):
+    """Rereference to global average of all electrode groups.
+   
+    Parameters
+    ----------
+    raw: Instance of MNE Raw Object
+    elec_group_list: List of grouped electrodes (depth, grid, microwire, etc.). Should be output from sort channels function.
+    trig_list: List of trigger channels marking events. Should be output from sort channels function.
+    
+    Returns
+    -------
+    reref_raw: MNE Raw Object
+        Contains both non-iEEG channels and rereferenced electrode groups.
+    """
+
+    # MNE object that contains trigger channels
+    trig_obj = raw.copy().pick_channels(trig_list, ordered=True)
+    
+    
 #### FILTER FUNCTIONS ####
+# need to copy and paste from mne filter function
+  
+
+
+
 
 def spatial_filter(raw, signal_range=(59,61), noise_range=(57,63)):
     """

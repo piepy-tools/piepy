@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 import mne
 import mne_bids
+from mne.filter import filter_data
 
 from functions import *
 
@@ -75,25 +76,21 @@ class iEEG:
     def rereference(self, method='local_average'):
         
         if method == 'local_average': 
-            reref_raw = local_avg_reference(raw, shank_list, trig_list)
+            reref_raw = local_avg_reference(raw, elec_group_list, trig_list)
         if method == 'spatial':
-            reref_raw = spatial_reference(raw, shank_list, trig_list)
+            reref_raw = spatial_reference(raw, elec_group_list, trig_list)
         if method == 'bipolar':
-            reref_raw = bipolar_reference(raw, shank_list, trig_list)
+            reref_raw = bipolar_reference(raw, elec_group_list, trig_list)
         if method == 'global':
+            reref_raw = global_avg_reference(raw, elec_group_list, trig_list)
     
-    def filter_data(self, filter_type='bandpass', frequency_range, filter_method='fir'): # add kwargs?
+    def filter_data(self, data, l_freq, h_freq, *kwargs): # thinking of including these as parameters and the rest kwargs
         
-        if filter_type = 'bandpass':
-        
-        if filter_type = 'bandstop':
-            
-        if filter_type = 'highpass':
-            
-        if filter_type = 'lowpass':
-        
-        if filter_type = 'spatial':
-            
+        # use filter_data MNE function
+        # can we just put self.fs in like that?
+        filt_data = filter_data(data, self.fs, l_freq, h_freq, picks=None, filter_length='auto', l_trans_bandwidth='auto',
+                                h_trans_bandwidth='auto', n_jobs=None, method='fir', iir_params=None, copy=True, phase='zero', 
+                                fir_window='hamming', fir_design='firwin', pad='reflect_limited', *, verbose=None)
     
     def epoch_data(self):
         
