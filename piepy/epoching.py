@@ -64,7 +64,8 @@ def epoch(raw, events_array=None, event_type='task', n_windows=None, metadata=No
     raw.load_data()
     
     if event_type=='rest':
-        # if the events type is rest, then the events array is going to just chunk the data up into arbitrary windows that are divisible with the length of the data
+        # if the events type is rest, then the events array is going to just chunk the data up into 
+        # arbitrary windows that are divisible with the length of the data
 
         n_times = len(raw.times)
 
@@ -72,6 +73,8 @@ def epoch(raw, events_array=None, event_type='task', n_windows=None, metadata=No
             assert ((n_times%n_windows) > 0), 'the length of data must be evenly divisible by n_windows'
         except AssertionError as msg:
             print(msg)
+
+        if 
 
 
         events_array = np.array()
